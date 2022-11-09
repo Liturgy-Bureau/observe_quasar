@@ -1,0 +1,40 @@
+// USEFUL INFO FOR THE APP
+
+SERVER PORTS ->
+  auth http server:         3000
+  user socket server:       3001
+  dashboard socket server:  3002
+  chat&forum socket server: 3003
+  pandora AI tensor server: 3004
+  pay http server:          3005
+  object socket server:     3006
+
+GCC ->
+  VM-IP: 35.239.136.193
+  Domain: liturgy.one
+  Application domain: obs.liturgy.one
+
+NGINX ->
+  Config file: /etc/nginx/sites-available/liturgy.one
+  Website runs at: www.liturgy.one
+  Observe UI runs at: www.obs.liturgy.one
+  Microservices runs at: obs.liturgy.one +
+    /auth = (auth http server)
+    /memb = (user socket server)
+    /dash = (dashboard socket server)
+    /chfm = (chat$forum socket server)
+    /pand = (pandora AI server)
+    /fin  = (finance http server)
+    /obj  = (object socket server)
+
+
+PM2 ->
+  Ecosystem config file: /var/www/observe/ecosystem.config.js
+  a) to start / stop ecosystem
+  pm2 start/stop ecosystem.config.js
+
+
+/////////////////////
+USEFUL COMMANDS ->
+sudo lsof -i:<PORT_NO> (check PID of port in use)
+sudo kill <PID> (kill PID in port)

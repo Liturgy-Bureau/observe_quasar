@@ -1,0 +1,15 @@
+{
+  "name": "7object_socket_server",
+  "version": "1.0.0",
+  "description": "socket io server for objects",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chris k.",
+  "license": "SEE LICENSE IN license.txt",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.3"
+  }
+}

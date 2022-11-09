@@ -1,0 +1,79 @@
+<!-- start here -->
+
+<!-- top bar -->
+<div class="w3-bar top-bar">
+  <div class="logo w3-bar-item" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"></div>
+  <span class="w3-bar-item top-bar-title">observe <small>quasar</small></span>
+  <button (click)="toggleAccBox()" class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="account">account_circle</button>
+  <span class="w3-bar-item w3-right">welcome</span>
+</div>
+
+<!-- account box -->
+<div *ngIf="accopen" class="account-box" [ngClass]="{'is-phone-portrait': isPhonePortrait,'is-phone-landscape': isPhoneLandscape,'is-tablet-portrait': isTabletPortrait,'is-tablet-landscape': isTabletLandscape }">
+  <div class="w3-bar">
+    <button class="w3-bar-item w3-button w3-hover-none w3-hover-text-grey avatar material-icons-sharp" aria-label="account_picture" >account_circle</button>
+  </div>
+  <hr>
+  <div class="w3-bar">
+    <span class="w3-bar-item">login</span>
+    <button class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="login">login</button>
+  </div>
+  <hr>
+  <div class="w3-bar">
+    <span class="w3-bar-item">my account</span>
+    <button class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="account">person</button>
+  </div>
+  <hr>
+  <div class="w3-bar">
+    <span class="w3-bar-item">go dark</span>
+    <button (click)="toggleTheme()" class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="theme">brightness_medium</button>
+  </div>
+  <div class="w3-bar">
+    <span class="w3-bar-item">go overview</span>
+    <button (click)="toggleSidebar()" (click)="opmode='overview'" class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="sidebar">flip</button>
+  </div>
+  <div class="w3-bar">
+    <span class="w3-bar-item">go xchange ideas</span>
+    <button (click)="toggleSidebar()" (click)="opmode='xchange'" class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="xchange">question_answer</button>
+  </div>
+</div>
+
+<!-- side bar -->
+<div class="sidebar-box" [ngClass]="{'is-phone-portrait': isPhonePortrait}">
+  <div class="w3-bar" [ngSwitch]="opmode">
+    <app-overview *ngSwitchCase="'overview'"></app-overview>
+    <app-xchange *ngSwitchCase="'xchange'"></app-xchange>
+    <button (click)="toggleSidebar()" class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="account">close</button>
+  </div>
+</div>
+
+<!-- footer -->
+<div class="w3-bar footer">
+  <span class="w3-bar-item material-icons-sharp">translate</span>
+  <button (click)="toggleLang()" class="w3-bar-item w3-button w3-hover-none w3-hover-text-grey" aria-label="language">{{this.selectedLanguage}}</button>
+  <a href="https://liturgy.one" target="_blank">
+    <img class="logolit w3-bar-item w3-right" src="./assets/litlogo.svg" height="40">
+  </a>
+  <span class="w3-bar-item w3-right ">2022.3.3</span>
+</div>
+
+<!-- xchange box -->
+<!--
+<div *ngIf="xchangeopen" class="xchange-box" [ngClass]="{'is-phone-portrait': isPhonePortrait,'is-phone-landscape': isPhoneLandscape,'is-tablet-portrait': isTabletPortrait,'is-tablet-landscape': isTabletLandscape }">
+  <div class="w3-bar">
+    <span class="w3-bar-item">xchange box</span>
+    <button (click)="toggleXChange()" class="w3-bar-item w3-right w3-button w3-hover-none w3-hover-text-grey material-icons-sharp" aria-label="account">close</button>
+  </div>
+</div> -->
+
+<!-- language box -->
+<div *ngIf="langopen" class="lang-box">
+    <div *ngFor="let language of languages; index as i" class="w3-bar-item">
+    <button (click)="selectLang(i)" class="w3-button w3-hover-none w3-hover-text-grey">{{languages[i]}}</button>
+    </div>
+</div>
+
+<!-- * * * begin of router* * * * -->
+<div class="main-container" [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

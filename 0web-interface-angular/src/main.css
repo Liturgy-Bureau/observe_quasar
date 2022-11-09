@@ -1,0 +1,237 @@
+/* *********  Liturgy Dev. ********* */
+/* ********* main css file ********* */
+/* ******   keep it simple    ****** */
+
+:root {
+  /* theming */
+  --primary-color: #a6a6a6;
+  --secondary-color: #bfbfbf;
+  --bg-color: #d9d9d9;
+  --font-color: #333333;
+  --btn-hover-color: hsl(0, 0%, 45%);
+  --btn-click-color: hsl(0, 0%, 60%);
+
+  /* sizing & moving parts*/
+  /*=== account box ===*/
+  /* web */
+  --account-box-width: 21%;
+  --account-box-height-web: calc(50vh - 40px);
+  --account-box-margin-top: 40px;
+  /* tablet portrait */
+  --account-box-width-tp: 42%;
+  --account-box-height-tp: calc(50vh - 40px);
+  /* tablet landscape */
+  --account-box-width-tl: 27%;
+  --account-box-height-tl: calc(63vh - 40px);
+  /* handset portrait */
+  --account-box-width-hp: 100vw;
+  --account-box-height-hp: calc(100vh - 40px);
+  /* handset landscape */
+  --account-box-width-hl: 36vw;
+  --account-box-height-hl: calc(100vh - 40px);
+
+  /* === xchange box === */
+  /* web */
+
+  --sidebar-width: 21%;
+  --sidebar-margin-left: 0px;
+
+  --main-box-width: 100vw;
+  --main-box-margin-left: 0px;
+
+  --xchange-box-width: 21%;
+  --xchange-box-margin-left: 0px;
+
+  --lang-box-width: 9%;
+}
+
+/* typography */
+@font-face {
+  font-family: "didact";
+  src: url("assets/fonts/DidactGothic-Regular.ttf") format("truetype");
+}
+
+body,html {
+  font-family: "didact";
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  overflow: hidden;
+}
+
+button:hover {
+  color: var(--btn-hover-color);
+}
+
+hr {
+  height: 1px;
+        background-color: #ccc;
+        border: none;
+}
+
+.top-bar {
+  background-color: var(--primary-color);
+  position: fixed;
+  z-index: 998;
+}
+
+.logo {
+  background-image:url("./assets/observe_logo_quasar_xs.svg");
+  margin-top: 12px;
+  margin-left: 6px;
+  background-size: cover;
+}
+
+.top-bar-title {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.account-box {
+  background-color: var(--secondary-color);
+  right: 0;
+  width: var(--account-box-width);
+  height: var(--account-box-height-web);
+  margin-top: var(--account-box-margin-top);
+  padding: 15px;
+  position: absolute;
+  z-index:997;
+  overflow-y: scroll;
+  -webkit-animation: fadein .21s;
+  animation: fadein .21s;
+}
+
+.account-box.is-phone-portrait {
+  width: var(--account-box-width-hp);
+  height: var(--account-box-height-hp);
+  overflow-y: scroll;
+}
+
+.account-box.is-phone-landscape {
+  width: var(--account-box-width-hl);
+  height: var(--account-box-height-hl);
+  overflow-y: scroll;
+}
+
+.account-box.is-tablet-portrait {
+  width: var(--account-box-width-tp);
+  height: var(--account-box-height-tp);
+  overflow-y: scroll;
+}
+
+.account-box.is-tablet-landscape {
+  width: var(--account-box-width-tl);
+  height: var(--account-box-height-tl);
+  overflow-y: scroll;
+}
+
+.sidebar-box {
+  background-color: var(--secondary-color);
+  width: var(--sidebar-width);
+  height:calc(100vh - 80px);
+  margin-top: 40px;
+  margin-left: var(--sidebar-margin-left);
+  padding: 15px;
+  position: absolute;
+  z-index:997;
+  transition: margin-left .18s;
+  transition-timing-function: ease-in-out;
+}
+
+.sidebar-box.is-phone-portrait{
+  width: calc(100vw + var(--sidebar-margin-left));
+  margin-left: var(--sidebar-margin-left);
+}
+
+/* SIDEBAR SECTION COVERS EVERY SCENARIO & USAGE
+.xchange-box {
+  background-color: var(--secondary-color);
+  width: var(--xchange-box-width);
+  height:calc(100vh - 80px);
+  margin-top: 40px;
+  margin-left: var(--xchange-box-margin-left);
+  padding: 15px;
+  position: absolute;
+  z-index:997;
+  transition: margin-left .18s;
+  transition-timing-function: ease-in-out;
+}
+
+.xchange-box.is-phone-portrait{
+  width: calc(100vw + var(--xchange-box-margin-left));
+  margin-left: var(--xchange-box-margin-left);
+}
+*/
+
+.main-container {
+  right: 0;
+  height: calc(100vh - 80px);
+  width: calc(var(--main-box-width) - var(--main-box-margin-left));
+  margin-top: 40px;
+  margin-left: var(--main-box-margin-left);
+  padding: 15px;
+  position: absolute;
+  z-index: 996;
+  transition: width .18s;
+  transition-timing-function: ease-in-out;
+}
+
+.lang-box {
+  background-color: var(--bg-color);
+  left: 0;
+  bottom: 40px;
+  width: var(--lang-box-width);
+  height: 15vh;
+  padding: 3px;
+  overflow-y: scroll;
+  position: absolute;
+  z-index:997;
+  -webkit-animation: fadein .18s;
+  animation: fadein .18s;
+}
+
+.footer {
+  background-color: var(--primary-color);
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 998;
+}
+
+.avatar {
+  margin-left: 40%;
+  font-size: 48px;
+}
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* fade in animations */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
