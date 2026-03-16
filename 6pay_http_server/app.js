@@ -4,7 +4,12 @@ const port = 3005
 
 const { MongoClient } = require("mongodb");
 
-conn = new MongoClient("mongodb+srv://litworker:litworker369@clusterobs.gf9vf.mongodb.net/?retryWrites=true&w=majority");
+if (!process.env.MONGODB_URI) {
+  console.error("Error: MONGODB_URI environment variable is not set.");
+  process.exit(1);
+}
+
+conn = new MongoClient(process.env.MONGODB_URI);
 db = conn.members;
 
 

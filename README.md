@@ -14,7 +14,7 @@
 
 **Observe Quasar** is a web-based platform built for real-time telemetry and control. It provides users with authentication, real-time dashboards, community chat and forums, financial tracking, and object management — all served through a microservices backend and a modern Angular frontend.
 
-The system was deployed on a Google Cloud Compute Engine (GCE) virtual machine at **obs.liturgy.one** (domain: liturgy.one), with NGINX acting as a reverse proxy in front of all Node.js microservices.
+The system was deployed on a Google Cloud Compute Engine (GCE) virtual machine at **<YOUR_APP_SUBDOMAIN>** (domain: <YOUR_DOMAIN>), with NGINX acting as a reverse proxy in front of all Node.js microservices.
 
 ---
 
@@ -25,7 +25,7 @@ The platform follows a **microservices architecture**. Every domain concern is h
 ```
 Browser
   │
-  └─► NGINX (obs.liturgy.one)
+  └─► NGINX (<YOUR_APP_SUBDOMAIN>)
         │
         ├─ /            ─► Angular SPA (built static files)
         ├─ /auth        ─► Auth HTTP Server         (port 3000)
@@ -64,7 +64,7 @@ Browser
 | NGINX | Reverse proxy & static file serving |
 | PM2 | Node.js process management |
 | nodemon | Development auto-reload |
-| GCE VM | Hosting (IP: 35.239.136.193) |
+| GCE VM | Hosting (IP: `<VM_IP>`) |
 
 ---
 
@@ -138,7 +138,15 @@ observe_quasar/
 - Node.js ≥ 14
 - Angular CLI (`npm install -g @angular/cli`)
 - nodemon (`npm install -g nodemon`)
-- MongoDB Atlas connection (credentials in each service's `app.js`)
+- MongoDB Atlas connection (set via `MONGODB_URI` environment variable in each service's `.env` file)
+
+**Environment Variables:**
+Services that connect to MongoDB require a `MONGODB_URI` environment variable. Copy the `.env.example` file in each service directory to `.env` and fill in your credentials:
+```bash
+cp 1auth_http_server/.env.example 1auth_http_server/.env
+cp 6pay_http_server/.env.example 6pay_http_server/.env
+```
+Then edit each `.env` file with your actual MongoDB Atlas connection string.
 
 ### Run Everything at Once
 
@@ -174,10 +182,10 @@ The production environment runs on a GCE VM with NGINX and PM2.
 ### Infrastructure Details
 | Item | Value |
 |---|---|
-| VM IP | 35.239.136.193 |
-| Domain | liturgy.one |
-| App subdomain | obs.liturgy.one |
-| NGINX config | `/etc/nginx/sites-available/liturgy.one` |
+| VM IP | `<VM_IP>` |
+| Domain | `<YOUR_DOMAIN>` |
+| App subdomain | `<YOUR_APP_SUBDOMAIN>` |
+| NGINX config | `/etc/nginx/sites-available/<YOUR_DOMAIN>` |
 | PM2 ecosystem config | `/var/www/observe/ecosystem.config.js` |
 
 ### PM2 Commands
@@ -210,7 +218,7 @@ sudo kill <PID>
 
 All persistent data is stored in **MongoDB Atlas** (cloud-hosted).
 
-- **Cluster:** `clusterobs.gf9vf.mongodb.net`
+- **Cluster:** `<YOUR_MONGODB_CLUSTER>`
 - **Primary database:** `conn.members`
 
 ---

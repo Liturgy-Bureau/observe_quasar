@@ -10,15 +10,15 @@ SERVER PORTS ->
   object socket server:     3006
 
 GCC ->
-  VM-IP: 35.239.136.193
-  Domain: liturgy.one
-  Application domain: obs.liturgy.one
+  VM-IP: <VM_IP>
+  Domain: <YOUR_DOMAIN>
+  Application domain: <YOUR_APP_SUBDOMAIN>
 
 NGINX ->
-  Config file: /etc/nginx/sites-available/liturgy.one
-  Website runs at: www.liturgy.one
-  Observe UI runs at: www.obs.liturgy.one
-  Microservices runs at: obs.liturgy.one +
+  Config file: /etc/nginx/sites-available/<YOUR_DOMAIN>
+  Website runs at: www.<YOUR_DOMAIN>
+  Observe UI runs at: www.<YOUR_APP_SUBDOMAIN>
+  Microservices runs at: <YOUR_APP_SUBDOMAIN> +
     /auth = (auth http server)
     /memb = (user socket server)
     /dash = (dashboard socket server)
