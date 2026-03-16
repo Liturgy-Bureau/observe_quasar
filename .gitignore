@@ -1,0 +1,7 @@
+# Environment variable files containing secrets — never commit these
+.env
+**/.env
+
+# Dependencies
+node_modules/
+**/node_modules/
