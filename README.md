@@ -12,7 +12,7 @@
 
 ## About
 
-**Observe Quasar** is a web-based platform built for liturgical/religious community management. It provides members with authentication, real-time dashboards, community chat and forums, financial tracking, and object management — all served through a microservices backend and a modern Angular frontend.
+**Observe Quasar** is a web-based platform built for real-time telemetry and control. It provides users with authentication, real-time dashboards, community chat and forums, financial tracking, and object management — all served through a microservices backend and a modern Angular frontend.
 
 The system was deployed on a Google Cloud Compute Engine (GCE) virtual machine at **obs.liturgy.one** (domain: liturgy.one), with NGINX acting as a reverse proxy in front of all Node.js microservices.
 
